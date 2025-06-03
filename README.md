@@ -4,7 +4,9 @@
 
 
 ## 📌 Overview
-MGRAD-UNet is an advanced neural network designed for medical image segmentation, addressing limitations in traditional UNet architectures such as pixel-level information loss and redundant feature fusion. By leveraging **multi-scale differential decoders** and a **gated reverse attention mechanism**, MGRAD-UNet enhances segmentation accuracy, particularly for small organs and boundary regions.
+[MGRAD-UNet](https://www.nature.com/articles/s41598-024-71194-9) 
+is an advanced neural network designed for medical image segmentation, addressing limitations in traditional UNet architectures such as pixel-level information loss and redundant feature fusion. By leveraging **multi-scale differential decoders** and a **gated reverse attention mechanism**, MGRAD-UNet enhances segmentation accuracy, particularly for small organs and boundary regions.
+
 
 ---
 
