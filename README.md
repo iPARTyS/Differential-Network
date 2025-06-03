@@ -34,7 +34,7 @@ MGRAD-UNet is an advanced neural network designed for medical image segmentation
 1. **Requirements**:
    - Python 3.8+
    - PyTorch 1.11.0+
-   - NVIDIA GPU (Tested on RTX 4090)
+     ...
 
 2. **Clone the repository**:
    ```bash
