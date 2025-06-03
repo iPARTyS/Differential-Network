@@ -41,3 +41,13 @@ MGRAD-UNet is an advanced neural network designed for medical image segmentation
    git clone https://github.com/your-repo/MGRAD-UNet.git
    cd MGRAD-UNet
    pip install -r requirements.txt
+   
+## Citation
+@article{yan2024mgrad,
+  title={A Differential Network with Multiple Gated Reverse Attention for Medical Image Segmentation},
+  author={Yan, Shun and Yang, Benquan and Chen, Alhua},
+  journal={Scientific Reports},
+  volume={14},
+  pages={20274},
+  year={2024}
+}
