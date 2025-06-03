@@ -238,9 +238,9 @@ class UNetDecoder(nn.Module):
 
 
 
-class DDUnet(nn.Module):
+class MGRAD-UNet(nn.Module):
     def __init__(self, n_classes=9):
-        super(DDUnet, self).__init__()
+        super(MGRAD-UNet, self).__init__()
         self.n_classes = n_classes
         self.encoder = Encoder()
         self.decoder1 = UNetDecoder(n_classes)
@@ -261,7 +261,7 @@ class DDUnet(nn.Module):
 
 
 if __name__ == '__main__':
-    model = DDUnet().cuda()
+    model = MGRAD-UNet().cuda()
     x = torch.randn(4, 3, 224, 224).cuda()
     for num in range(3):
         if num == 0:

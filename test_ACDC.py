@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 from utils.utils import test_single_volume
 from utils.dataset_ACDC import ACDCdataset, RandomGenerator
-from networks.my_net import DDUnet
+from networks.my_net import MGRAD-UNet
         
 def inference(args, model, testloader, test_save_path=None):
     logging.info("{} test iterations per epoch".format(len(testloader)))
@@ -85,8 +85,8 @@ if __name__ == "__main__":
     # config_vit.n_skip = args.n_skip
 
     args.is_pretrain = True
-    args.exp = 'ACDC_DDUNet_Small_loss_MUTATION_w3_7' + str(args.img_size)
-    snapshot_path = "{}/{}/{}".format(args.save_path, args.exp, 'ACDC_DDUNet_Small_loss_MUTATION_w3_7')
+    args.exp = 'ACDC_MGRAD-UNet_Small_loss_MUTATION_w3_7' + str(args.img_size)
+    snapshot_path = "{}/{}/{}".format(args.save_path, args.exp, 'ACDC_MGRAD-UNet_Small_loss_MUTATION_w3_7')
     snapshot_path = snapshot_path + '_pretrain' if args.is_pretrain else snapshot_path
     snapshot_path = snapshot_path + '_epo' +str(args.max_epochs) if args.max_epochs != 30 else snapshot_path
     snapshot_path = snapshot_path+'_bs'+str(args.batch_size)
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     print("The current time is", current_time)
     snapshot_path = snapshot_path +'_run'+current_time # replace 'current_time' with the 'current_time' in your trained folder from 'model_pth' directory
 
-    net = DDUnet(n_classes=args.num_classes).cuda()
+    net = MGRAD-UNet(n_classes=args.num_classes).cuda()
 
     snapshot = os.path.join(snapshot_path, 'best.pth')
     if not os.path.exists(snapshot): snapshot = snapshot.replace('best', 'epoch_'+str(args.max_epochs-1))

@@ -22,7 +22,7 @@ from utils.utils import powerset
 from utils.utils import DiceLoss, calculate_dice_percase, val_single_volume
 from utils.dataset_ACDC import ACDCdataset, RandomGenerator
 from test_ACDC import inference
-from networks.my_net import DDUnet
+from networks.my_net import MGRAD-UNet
 from ptflops import get_model_complexity_info
 
 parser = argparse.ArgumentParser()
@@ -59,11 +59,11 @@ torch.cuda.manual_seed(args.seed)
 # 这些操作都是为了在实验中使用相同的种子，从而确保每次运行实验时生成的随机数都是相同的，以保证实验的可重复性。这对于调试和比较不同模型、算法的性能是非常重要的。
 args.is_pretrain = True
 # 主要用于构建一个用于保存模型快照（snapshot）的路径，路径的构建依赖于一系列的命令行参数
-args.exp = 'DDUNet_Small_loss_MUTATION_w3_7_' + str(args.img_size)
+args.exp = 'MGRAD-UNet_Small_loss_MUTATION_w3_7_' + str(args.img_size)
 # 使用 format 方法构建 snapshot_path，它包括三个部分，
-# 分别是 args.save_path、args.exp 和 'DDUNet_Small_loss_MUTATION_w3_7'
+# 分别是 args.save_path、args.exp 和 'MGRAD-UNet_Small_loss_MUTATION_w3_7'
 # 形成了一个唯一的路径，用于保存模型快照
-snapshot_path = "{}/{}/{}".format(args.save_path, args.exp, 'DDUNet_Small_loss_MUTATION_w3_7')
+snapshot_path = "{}/{}/{}".format(args.save_path, args.exp, 'MGRAD-UNet_Small_loss_MUTATION_w3_7')
 snapshot_path = snapshot_path + '_pretrain' if args.is_pretrain else snapshot_path
 snapshot_path = snapshot_path + '_epo' + str(args.max_epochs) if args.max_epochs != 30 else snapshot_path
 snapshot_path = snapshot_path + '_bs' + str(args.batch_size)
@@ -85,7 +85,7 @@ if not os.path.exists(test_save_path):
     os.makedirs(test_save_path, exist_ok=True)
 
 # 模型初始化 + 加载
-net = DDUnet(n_classes=args.num_classes).cuda()
+net = MGRAD-UNet(n_classes=args.num_classes).cuda()
 
 if args.checkpoint:
     net.load_state_dict(torch.load(args.checkpoint))

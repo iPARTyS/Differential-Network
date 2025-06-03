@@ -15,7 +15,7 @@ from tqdm import tqdm
 from utils.dataset_synapse import Synapse_dataset
 from utils.utils_noSideC import test_single_volume
 
-from networks.my_net_NoRFBSideConv import DDUnet
+from networks.my_net_NoRFBSideConv import MGRAD-UNet
 
 parser = argparse.ArgumentParser()
 
@@ -103,8 +103,8 @@ if __name__ == "__main__":
     args.is_pretrain = True
 
     # name the same snapshot defined in train script!
-    args.exp = 'DDUNet_Cascaded_Small_loss_MUTATION_w3_7_' + dataset_name + str(args.img_size)
-    snapshot_path = "model_DDUNet_Synapse_NoSB/{}/{}".format(args.exp, 'DDUNet_Cascaded_Small_loss_MUTATION_w3_7')
+    args.exp = 'MGRAD-UNet_Cascaded_Small_loss_MUTATION_w3_7_' + dataset_name + str(args.img_size)
+    snapshot_path = "model_MGRAD-UNet_Synapse_NoSB/{}/{}".format(args.exp, 'MGRAD-UNet_Cascaded_Small_loss_MUTATION_w3_7')
     snapshot_path = snapshot_path + '_pretrain' if args.is_pretrain else snapshot_path
     snapshot_path = snapshot_path + '_' + str(args.max_iterations)[0:2] + 'k' if args.max_iterations != 30000 else snapshot_path
     snapshot_path = snapshot_path + '_epo' + str(args.max_epochs) if args.max_epochs != 30 else snapshot_path
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     print("The current time is", current_time)
     snapshot_path = snapshot_path +'_run'+current_time # replace 'current_time' with the 'current_time' in your trained folder from 'model_pth' directory
     # wo do not use the model
-    net = DDUnet(n_classes=9).cuda()
+    net = MGRAD-UNet(n_classes=9).cuda()
     
 
 
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     net.load_state_dict(torch.load(snapshot))
     snapshot_name = snapshot_path.split('/')[-1]
 
-    log_folder = 'test_DDUnet_synapse_log/test_MERIT-GCASCADE_synapse_log_' + args.exp
+    log_folder = 'test_MGRAD-UNet_synapse_log/test_MERIT-GCASCADE_synapse_log_' + args.exp
     os.makedirs(log_folder, exist_ok=True)
     logging.basicConfig(filename=log_folder + '/'+snapshot_name+".txt", level=logging.INFO, format='[%(asctime)s.%(msecs)03d] %(message)s', datefmt='%H:%M:%S')
     logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))

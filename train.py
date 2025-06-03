@@ -22,7 +22,7 @@ from torch.utils.data import DataLoader
 from torchvision.utils import make_grid
 
 from dataloaders.pancreas import Pancreas
-from networks.my_net import DDUnet
+from networks.my_net import MGRAD-UNet
 from dataloaders import utils
 from test_util import test_calculate_metric
 from utils import ramps, losses, metrics
@@ -115,7 +115,7 @@ if __name__ == "__main__":
 
     def create_model(ema=False):
         # Network definition
-        net = DDUnet(in_ch=1, n_classes=num_classes)
+        net = MGRAD-UNet(in_ch=1, n_classes=num_classes)
         model = net.cuda()
         if ema:
             for param in model.parameters():
